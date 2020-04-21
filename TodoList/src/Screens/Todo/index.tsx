@@ -1,7 +1,8 @@
 import React from 'react';
 import Styled from 'styled-components/native';
-import TodoListView from './TodoListView'; //어디서 온 TodoListView?
+import TodoListView from './TodoListView'; 
 import AddTodo from './AddTodo' ;
+import ClearAllTodo from './ClearAllTodo';
 
 
 const Container = Styled.View`
@@ -15,6 +16,7 @@ const Todo = ({ }: Props) => {
         <Container>
             <TodoListView />
             <AddTodo /> 
+            <ClearAllTodo /> 
         </Container>
     );
 };

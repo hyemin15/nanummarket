@@ -19,7 +19,7 @@ interface Props {}
 const Header = ({ }: Props) => { //단순히 Todo List App이라는 문자를 화면에 표시
     return (
         <Container>
-            <TitleLabel>Todo List App</TitleLabel>
+            <TitleLabel>ToDo App</TitleLabel>
         </Container>
     );
 };

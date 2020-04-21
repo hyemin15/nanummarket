@@ -12,6 +12,7 @@ const TodoListContext = createContext<ITodoListContext>({
     todoList: [], 
     addTodoList: (todo: string): void => {}, /* todoList에 데이터 추가하기 위한 함수 */
     removeTodoList: (index: number): void => {}, /* todoList에 데이터 삭제하기 위한 함수 */
+    clearTodoList: (): void => {},
 });
 
 
@@ -31,6 +32,12 @@ const TodoListContextProvider = ({ children }: Props) => { /* 자식 컴포넌�
         list.splice(index, 1);
         setTodoList(list); /* setTodoList로 State에 제거된 데이터 저장 */
         AsyncStorage.setItem('todoList', JSON.stringify(list)); /* 변경된 값 update */
+    };
+    
+    const clearTodoList = (): void => {
+        const list = Array<string>();
+        setTodoList(list);
+        AsyncStorage.setItem('todoList', JSON.stringify(list));
     };
 
     const initData = async () => { /* 앱이 시작될 때 AsyncStorage에 저장된 데이터 불러와, context의 값을 초기화하기 위한 함수 */
@@ -52,7 +59,7 @@ const TodoListContextProvider = ({ children }: Props) => { /* 자식 컴포넌�
     return(
         <TodoListContext.Provider
         value={{
-            todoList, addTodoList, removeTodoList,
+            todoList, addTodoList, removeTodoList, clearTodoList,
         }}>
             {children}
         </TodoListContext.Provider>
