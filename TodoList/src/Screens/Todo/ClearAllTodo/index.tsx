@@ -1,20 +1,31 @@
-import React, { useContext } from 'react'; 
+import React, { useContext,useState } from 'react'; 
 import Styled from 'styled-components/native';
-import ClearButton from './ClearAllButton';
+import ClearAllButton from './ClearAllButton';
+import Dialog from 'react-native-dialog';
 
 import { TodoListContext } from '~/Context/TodoListContext';
+
+const ButtonContainer = Styled.TouchableOpacity`
+    box-shadow: 4px 4px 8px #999;
+`;
 
 interface Props {}
 
 const ClearAllTodo = ({ }: Props) => {
     const { clearTodoList } = useContext<ITodoListContext>(TodoListContext);
+    const [ dialogVisible, setDialogVisible ] = useState<boolean>(false);
     
     return (
         <>
-        <ClearButton onPress={() => clearTodoList(true)} />
+            <ClearAllButton onPress={() => setDialogVisible(true)} />
+            <Dialog.Container visible={dialogVisible}>
+                <Dialog.Title>전체 삭제</Dialog.Title>
+                <Dialog.Description>정말로 삭제를 원하시나요?</Dialog.Description>
+                <Dialog.Button label="아니요" onPress={() => {setDialogVisible(false)}} />
+                <Dialog.Button label="네" onPress={() => {setDialogVisible(false); clearTodoList();}} />
+            </Dialog.Container>
         </>
     );
 };
 
 export default ClearAllTodo;
-
