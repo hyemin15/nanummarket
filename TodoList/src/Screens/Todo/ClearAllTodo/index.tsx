@@ -5,9 +5,6 @@ import Dialog from 'react-native-dialog';
 
 import { TodoListContext } from '~/Context/TodoListContext';
 
-const ButtonContainer = Styled.TouchableOpacity`
-    box-shadow: 4px 4px 8px #999;
-`;
 
 interface Props {}
 
