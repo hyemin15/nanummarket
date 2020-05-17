@@ -19,7 +19,7 @@ const CheckLogin = ({ navigation }: Props) => {
   AsyncStorage.getItem('key')
     .then(value => {
       if (value) {
-        navigation.navigate('MovieNavigator');
+        navigation.navigate('MovieNavigator'); /* 로그인 키 값이 존재한다면 MovieNavigator */
       } else {
         navigation.navigate('LoginNavigator');
       }

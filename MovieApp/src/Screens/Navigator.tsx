@@ -29,4 +29,4 @@ const AppNavigator = createSwitchNavigator(
   }
 );
 
-export default createAppContainer(AppNavigator);
+export default createAppContainer(AppNavigator); /* 내비게이션을 사용할 경우, 항상 마지막은 createAppContainer로 내비게이션을 감싸서 제공한다. */

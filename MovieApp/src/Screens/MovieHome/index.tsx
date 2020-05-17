@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationScreenProp, NavigationState } from 'react-navigation';
 import Styled from 'styled-components/native';
 
-import BitCatalogList from './BigCatalogList';
+import BigCatalogList from './BigCatalogList';
 import SubCatalogList from './SubCatalogList';
 
 const Container = Styled.ScrollView`
@@ -21,24 +21,26 @@ interface Props {
   navigation: NavigationScreenProp<NavigationState>;
 }
 
-const MovieHome = ({ navigation }: Props) => {
+const MovieHome = ({ navigation }: Props) => { 
+
+  /* 로그아웃하면 AsyncStorage에 저장된 인증키 제거하고, 로그인 내비게이션으로 화면을 이동시킨다. */
   const _logout = () => {
     AsyncStorage.removeItem('key');
     navigation.navigate('LoginNavigator');
   };
 
-  useEffect(() => {
-    navigation.setParams({
+  useEffect(() => { /* navigation에 매개변수 설정 */
+    navigation.setParams({ 
       logout: _logout,
     });
   }, []);
 
   return (
     <Container>
-      <BitCatalogList
-        url="https://yts.lt/api/v2/list_movies.json?sort_by=like_count&order_by=desc&limit=5"
+      <BigCatalogList
+        url="https://yts.lt/api/v2/list_movies.json?sort_by=like_count&order_by=desc&limit=5" /* like_count 내림차순 5개 */
         onPress={(id: number) => {
-          navigation.navigate('MovieDetail', {
+          navigation.navigate('MovieDetail', { /* 클릭하면 상세 페이지 이동 */
             id,
           });
         }}
@@ -78,8 +80,8 @@ interface INaviProps {
   navigation: NavigationScreenProp<NavigationState>;
 }
 
-MovieHome.navigationOptions = ({ navigation }: INaviProps) => {
-  const logout = navigation.getParam('logout');
+MovieHome.navigationOptions = ({ navigation }: INaviProps) => { /* 내비게이션 옵션 함수로 설정 */
+  const logout = navigation.getParam('logout'); /* 위에서 설정한 로그아웃 함수 가져와 내비게이션 헤더 오른쪽 버튼과 연결 */
   return {
     title: 'MOVIEAPP',
     headerTintColor: '#E70915',
@@ -90,7 +92,7 @@ MovieHome.navigationOptions = ({ navigation }: INaviProps) => {
     headerTitleStyle: {
       fontWeight: 'bold',
     },
-    headerBackTitle: null,
+    headerBackTitle: null, /* 뒤로가기 버튼 제목 제거 */
     headerRight: (
       <StyleButton
         onPress={() => {

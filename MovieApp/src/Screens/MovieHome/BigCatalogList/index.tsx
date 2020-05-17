@@ -17,7 +17,7 @@ interface Props {
 const BigCatalogList = ({ url, onPress }: Props) => {
   const [data, setData] = useState<Array<IMovie>>([]);
 
-  useEffect(() => {
+  useEffect(() => { /* fetch API를 통해 영화 리스트 데이터를 가져와, 이 State에 값을 채우도록 설정 */
     fetch(url)
       .then(response => response.json())
       .then(json => {
@@ -32,8 +32,8 @@ const BigCatalogList = ({ url, onPress }: Props) => {
   return (
     <Container>
       <FlatList
-        horizontal={true}
-        pagingEnabled={true}
+        horizontal={true} /* 가로로 스크롤이 되도록 설정 */
+        pagingEnabled={true} /* 가로로 스크롤 할 때, 한 리스트 아이템이 한 화면에 보이도록 설정 */
         data={data}
         keyExtractor={(item, index) => {
           return `bigScreen-${index}`;

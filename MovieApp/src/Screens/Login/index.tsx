@@ -1,7 +1,7 @@
 import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationScreenProp, NavigationState } from 'react-navigation';
-import { Linking } from 'react-native';
+import { Linking } from 'react-native'; /* 웹 브라우저를 열어준다 */
 import Styled from 'styled-components/native';
 
 import Input from '~/Components/Input';
@@ -59,7 +59,7 @@ const Login = ({ navigation }: Props) => {
   );
 };
 
-Login.navigationOptions = {
+Login.navigationOptions = { /* 투명 내비게이션 헤더 설정 */
   title: 'MOVIEAPP',
   headerTransparent: true,
   headerTintColor: '#E70915',
